@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bison Serve</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}" class="nav-link">Home</a>
+        <a href="{% url 'service_opportunities' %}" class="nav-link">Service Opportunities</a>
+        <a href="{% url 'service_match' %}" class="nav-link">Service Match</a>
+
+    </nav>
+
+    <div class="welcome-text">
+        <h1> Bison Serve </h1>
+        
+    </div>
+    
+    
+
+
+    <div class="hero-banners">
+        <!-- Service Match Banner -->
+        <a href="{% url 'service_match' %}" class="hero-banner-link">
+            <div class="hero-banner" style="background: url('{% static "images/service.jpg" %}') no-repeat center center; background-size: cover;">
+                <h1>Service Match</h1>
+                <p>Find the best services tailored to your needs.</p>
+            </div>
+        </a>
+
+        <!-- Service Opportunities Banner -->
+        <a href="{% url 'service_opportunities' %}" class="hero-banner-link">
+            <div class="hero-banner" style="background: url('{% static "images/volunterr.jpg" %}') no-repeat center center; background-size: cover;">
+                <h1>Service Opportunities</h1>
+                <p>Explore opportunities to connect with like-minded providers.</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Chatbot Icon -->
+    <div id="chatbot-icon" onclick="toggleChatbot()">
+        <img src="{% static 'images/chatbot.jpg' %}" alt="Chatbot" />
+    </div>
+
+    <!-- Chatbot Box -->
+    <div id="chatbot-container">
+        <div id="chatbot-header" onclick="toggleChatbot()">💬 Service Chatbot</div>
+        <div id="chatbot-box">
+            <div id="chatbox"></div>
+            <div id="chatbot-input">
+                <input type="text" id="userInput" placeholder="Type your message...">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <main>
+        
+
+        
+    </main>
+    <footer>
+        <p>&copy; 2025 Interactive Webpage. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
+
+

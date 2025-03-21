@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bison Serve - Service Opportunities</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <!-- Leaflet CSS (for the map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        /* Style for the map container */
+        #map {
+            height: 400px;
+            width: 80%;
+            margin-left: 180px;
+            margin-bottom: 200px;
+            border-radius: 10px;
+        }
+
+        /* Style for the volunteer list */
+        .volunteer-list {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .volunteer-list h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .volunteer-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .volunteer-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .volunteer-list a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .volunteer-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}" class="nav-link">Home</a>
+        <a href="{% url 'service_opportunities' %}" class="nav-link">Service Opportunities</a>
+        <a href="{% url 'service_match' %}" class="nav-link">Service Match</a>
+    </nav>
+
+    <div class="welcome-text">
+        <h1> Service Opportunities! </h1>
+    </div>
+
+    <!-- Volunteer List -->
+    <div class="volunteer-list">
+        <h2>Available Volunteer Opportunities in Washington, D.C.</h2>
+        <ul id="locations-list"></ul>
+    </div>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <footer>
+        <p>&copy; 2025 Interactive Webpage. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+
+    <!-- Leaflet JS (for the interactive map) -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        // Initialize the map and set its view to Washington, D.C.
+        var map = L.map('map').setView([38.9072, -77.0369], 13);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Volunteer opportunities data
+        var opportunities = [
+            {
+                name: "Bread for the City",
+                description: "Provides food, clothing, medical care, and legal and social services to reduce the burden of poverty.",
+                lat: 38.9145,
+                lon: -77.0163,
+                url: "https://breadforthecity.org/volunteer/"
+            },
+            {
+                name: "Central Union Mission",
+                description: "Offers emergency shelter, food, and recovery programs for the homeless and vulnerable.",
+                lat: 38.9096,
+                lon: -77.0230,
+                url: "https://www.missiondc.org/get-involved/volunteer/"
+            },
+            {
+                name: "SOME (So Others Might Eat)",
+                description: "Provides food, clothing, and health care to the homeless and poor.",
+                lat: 38.9007,
+                lon: -76.9903,
+                url: "https://some.org/get-involved/volunteer/"
+            }
+        ];
+
+        // Function to add markers and list items
+        function addOpportunities(opps) {
+            var list = document.getElementById('locations-list');
+            opps.forEach(function(opp) {
+                // Add marker to the map
+                var marker = L.marker([opp.lat, opp.lon]).addTo(map)
+                    .bindPopup('<b>' + opp.name + '</b><br>' + opp.description);
+
+                // Add item to the list
+                var listItem = document.createElement('li');
+                listItem.innerHTML = '<a href="' + opp.url + '" target="_blank">' + opp.name + '</a>: ' + opp.description;
+                list.appendChild(listItem);
+            });
+        }
+
+        // Add opportunities to the map and list
+        addOpportunities(opportunities);
+    </script>
+
+</body>
+</html>

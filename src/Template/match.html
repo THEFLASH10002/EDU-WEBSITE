@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bison Serve - Service Match</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <style>
+        /* Styling for the form */
+        .match-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Results Section */
+        .results {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .opportunity {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #eef2ff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .opportunity a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .opportunity a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}" class="nav-link">Home</a>
+        <a href="{% url 'service_opportunities' %}" class="nav-link">Service Opportunities</a>
+        <a href="{% url 'service_match' %}" class="nav-link">Service Match</a>
+    </nav>
+
+    <div class="welcome-text">
+        <h1> Find Your Perfect Service Opportunity! </h1>
+    </div>
+
+    <!-- Service Match Form -->
+    <div class="match-container">
+        <h2>What kind of service are you looking for?</h2>
+        <select id="service-category">
+            <option value="food">Food Distribution</option>
+            <option value="homeless">Homeless Shelters</option>
+            <option value="education">Education & Tutoring</option>
+            <option value="environment">Environmental Cleanup</option>
+            <option value="community">Community Outreach</option>
+        </select>
+        <button onclick="findMatch()">Find Opportunities</button>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results" id="results-container"></div>
+
+    <footer>
+        <p>&copy; 2025 Interactive Webpage. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+
+    <script>
+        function findMatch() {
+            var category = document.getElementById("service-category").value;
+            var resultsContainer = document.getElementById("results-container");
+
+            // Clear previous results
+            resultsContainer.innerHTML = "";
+
+            // Sample service opportunities based on categories
+            var opportunities = {
+                "food": [
+                    { name: "DC Central Kitchen", url: "https://dccentralkitchen.org/", description: "Helps provide meals for the homeless." },
+                    { name: "Martha’s Table", url: "https://marthastable.org/", description: "Distributes healthy meals to families in need." }
+                ],
+                "homeless": [
+                    { name: "Central Union Mission", url: "https://www.missiondc.org/", description: "Emergency shelter for the homeless." },
+                    { name: "SOME (So Others Might Eat)", url: "https://some.org/", description: "Provides food, healthcare, and job training." }
+                ],
+                "education": [
+                    { name: "826DC", url: "https://826dc.org/", description: "Helps students improve writing skills." },
+                    { name: "Reading Partners DC", url: "https://readingpartners.org/", description: "Tutoring for children struggling with literacy." }
+                ],
+                "environment": [
+                    { name: "Rock Creek Conservancy", url: "https://www.rockcreekconservancy.org/", description: "Protects Rock Creek Park’s natural resources." },
+                    { name: "Casey Trees", url: "https://caseytrees.org/", description: "Restores and protects urban tree canopy." }
+                ],
+                "community": [
+                    { name: "DC Mutual Aid", url: "https://www.dcmutualaid.org/", description: "Provides resources and community support." },
+                    { name: "The Father McKenna Center", url: "https://fathermckennacenter.org/", description: "Supports low-income individuals in DC." }
+                ]
+            };
+
+            // Display matching results
+            if (opportunities[category]) {
+                opportunities[category].forEach(function(opp) {
+                    var div = document.createElement("div");
+                    div.classList.add("opportunity");
+                    div.innerHTML = `<a href="${opp.url}" target="_blank">${opp.name}</a><br>${opp.description}`;
+                    resultsContainer.appendChild(div);
+                });
+            } else {
+                resultsContainer.innerHTML = "<p>No opportunities found for this category.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
