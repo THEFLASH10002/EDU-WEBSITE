@@ -11,13 +11,13 @@
 <body>
     <nav>
         <a href="{% url 'home' %}" class="nav-link">Home</a>
-        <a href="{% url 'service_opportunities' %}" class="nav-link">Service Opportunities</a>
-        <a href="{% url 'service_match' %}" class="nav-link">Service Match</a>
+        <a href="{% url 'service_opportunities' %}" class="nav-link">Find-A-Tutor</a>
+        <a href="{% url 'service_match' %}" class="nav-link">Tutoring Services</a>
 
     </nav>
 
     <div class="welcome-text">
-        <h1> Bison Serve </h1>
+        <h1> Bison Tutor </h1>
         
     </div>
     
@@ -28,7 +28,7 @@
         <!-- Service Match Banner -->
         <a href="{% url 'service_match' %}" class="hero-banner-link">
             <div class="hero-banner" style="background: url('{% static "images/service.jpg" %}') no-repeat center center; background-size: cover;">
-                <h1>Service Match</h1>
+                <h1>Find a Tutor</h1>
                 <p>Find the best services tailored to your needs.</p>
             </div>
         </a>
@@ -36,7 +36,7 @@
         <!-- Service Opportunities Banner -->
         <a href="{% url 'service_opportunities' %}" class="hero-banner-link">
             <div class="hero-banner" style="background: url('{% static "images/volunterr.jpg" %}') no-repeat center center; background-size: cover;">
-                <h1>Service Opportunities</h1>
+                <h1>Tutoring Services</h1>
                 <p>Explore opportunities to connect with like-minded providers.</p>
             </div>
         </a>
@@ -49,7 +49,7 @@
 
     <!-- Chatbot Box -->
     <div id="chatbot-container">
-        <div id="chatbot-header" onclick="toggleChatbot()">💬 Service Chatbot</div>
+        <div id="chatbot-header" onclick="toggleChatbot()">💬 AI Tutor </div>
         <div id="chatbot-box">
             <div id="chatbox"></div>
             <div id="chatbot-input">

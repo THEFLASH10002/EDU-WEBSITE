@@ -63,7 +63,7 @@ ROOT_URLCONF = 'trydjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/kgreg/dev/trydjango/src/Template/'],
+        'DIRS': ['C:/Users/kgreg/OneDrive/Desktop/Streamlit Project/EDU-WEBSITE/src/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
